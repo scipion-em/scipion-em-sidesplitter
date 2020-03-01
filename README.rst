@@ -1,5 +1,5 @@
 ===================
-SIDEPSLITTER plugin
+SIDESPLITTER plugin
 ===================
 
 This plugin provide wrappers around `SIDESPLITTER <https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER>`_ program for mitigating local overfitting.
@@ -41,7 +41,7 @@ To check the installation, simply run one of the following Scipion tests:
 
 .. code-block::
 
-   scipion tests sidesplitter.tests.test_protocols_sidesplitter.....
+   scipion tests sidesplitter.tests.test_protocol_sidesplitter.TestSideSplitter
 
 A complete list of tests can also be seen by executing ``scipion test --show --grep sidesplitter``
 

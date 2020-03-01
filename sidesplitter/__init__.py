@@ -60,6 +60,11 @@ class Plugin(pwem.Plugin):
 
     @classmethod
     def defineBinaries(cls, env):
+        shell = os.environ.get("SHELL", "bash")
+        installcmd = [('%s compile.sh' % shell,
+                       ['sidesplitter'])]
+
         env.addPackage('sidesplitter', version='1.0',
                        tar='sidesplitter_v1.0.tgz',
+                       commands=installcmd,
                        default=True)

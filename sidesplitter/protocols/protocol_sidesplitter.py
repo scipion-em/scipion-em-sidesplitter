@@ -164,7 +164,6 @@ class ProtSideSplitter(ProtAnalysis3D):
     # --------------------------- UTILS functions -----------------------------
  
     def _getArgs(self):
-        import os
         """ Prepare the args dictionary."""
         args = {'--v1': self._getPaths(self._getFileName('half1')),
                 '--v2': self._getPaths(self._getFileName('half2'))}
