@@ -32,7 +32,7 @@ from pwem.protocols import ProtAnalysis3D
 from pwem.objects import Volume
 from pwem.emlib.image import ImageHandler
 
-import sidesplitter
+from sidesplitter import Plugin
 from ..convert import convertMask
 
 
@@ -47,15 +47,8 @@ class ProtSideSplitter(ProtAnalysis3D):
     def _getInputPath(self, *paths):
         return self._getPath('input', *paths)
 
-    def _initialize(self):
-        """ This function is meant to be called after the
-        working dir for the protocol have been set.
-        (maybe after recovery from mapper)
-        """
-        self._createFilenameTemplates()
-
     def _createFilenameTemplates(self):
-        """ Centralize how files are called for iterations and references. """
+        """ Centralize how files are called. """
         myDict = {'half1': self._getInputPath("half1_unfil.mrc"),
                   'half2': self._getInputPath("half2_unfil.mrc"),
                   'mask': self._getInputPath("mask.mrc"),
@@ -93,15 +86,14 @@ class ProtSideSplitter(ProtAnalysis3D):
     # --------------------------- INSERT steps functions ----------------------
     
     def _insertAllSteps(self):
-        objId = self.protRefine.get().getObjId()
-        self._initialize()
-        self._insertFunctionStep('convertInputStep', objId)
+        self._createFilenameTemplates()
+        self._insertFunctionStep('convertInputStep')
         self._insertFunctionStep('runSideSplitterStep')
         self._insertFunctionStep('createOutputStep')
 
     # --------------------------- STEPS functions -----------------------------
     
-    def convertInputStep(self, protId):
+    def convertInputStep(self):
         """ Convert input half-maps to mrc as expected by SIDESPLITTER."""
         pwutils.makePath(self._getInputPath())
 
@@ -121,11 +113,11 @@ class ProtSideSplitter(ProtAnalysis3D):
         """ Call SIDESPLITTER with the appropriate parameters. """
         args = self._getArgs()
         param = ' '.join(['%s %s' % (k, str(v)) for k, v in args.items()])
-        program = sidesplitter.Plugin.getProgram()
+        program = Plugin.getProgram()
         cmd = 'export OMP_NUM_THREADS=%d; ' % self.numberOfThreads.get()
         cmd += program
 
-        self.runJob(cmd, param, env=sidesplitter.Plugin.getEnviron(),
+        self.runJob(cmd, param, env=Plugin.getEnviron(),
                     cwd=self._getExtraPath(),
                     numberOfThreads=1)
 
@@ -154,6 +146,11 @@ class ProtSideSplitter(ProtAnalysis3D):
     def _summary(self):
         summary = []
 
+        if hasattr(self, 'outputVolume1'):
+            summary.append("Created locally filtered half-maps.")
+        else:
+            summary.append("Output is not ready")
+
         return summary
     
     def _validate(self):
@@ -165,17 +162,17 @@ class ProtSideSplitter(ProtAnalysis3D):
  
     def _getArgs(self):
         """ Prepare the args dictionary."""
-        args = {'--v1': self._getPaths(self._getFileName('half1')),
-                '--v2': self._getPaths(self._getFileName('half2'))}
+        args = {'--v1': self._getRelPath(self._getFileName('half1')),
+                '--v2': self._getRelPath(self._getFileName('half2'))}
 
         if self.mask.hasValue():
-            args.update({'--mask': self._getPaths(self._getFileName('mask'))})
+            args['--mask'] = self._getRelPath(self._getFileName('mask'))
 
         if self.doSNRWeighting:
-            args.update({'--spectrum': ' '})
+            args['--spectrum'] = ' '
 
         return args
 
-    def _getPaths(self, fn):
-        """ Return relative path to the input dir from cwd=extra. """
-        return pwutils.join("../input", os.path.basename(fn))
+    def _getRelPath(self, fn):
+        """ Return relative path from cwd=extra. """
+        return os.path.relpath(fn, self._getExtraPath())

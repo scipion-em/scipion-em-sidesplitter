@@ -41,7 +41,7 @@ try:
                                                  "ProtRelionRefine3D",
                                                  doRaise=True)
 except ImportError as e:
-    print("Relion plugin not found! You need to install to be able to run this test.")
+    print("Relion plugin not found! You need to install it to be able to run this test.")
 
 
 class TestSideSplitter(BaseTest):
