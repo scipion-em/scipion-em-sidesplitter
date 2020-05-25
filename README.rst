@@ -4,12 +4,12 @@ SIDESPLITTER plugin
 
 This plugin provide wrappers around `SIDESPLITTER <https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER>`_ program for mitigating local overfitting.
 
-+------------------+------------------+
-| stable: |stable| | devel: | |devel| |
-+------------------+------------------+
++--------------+----------------+
+| prod: |prod| | devel: |devel| |
++--------------+----------------+
 
-.. |stable| image:: http://scipion-test.cnb.csic.es:9980/badges/sidesplitter_prod.svg
-.. |devel| image:: http://scipion-test.cnb.csic.es:9980/badges/sidesplitter_sdevel.svg
+.. |prod| image:: http://scipion-test.cnb.csic.es:9980/badges/cistem_prod.svg
+.. |devel| image:: http://scipion-test.cnb.csic.es:9980/badges/cistem_devel.svg
 
 
 Installation

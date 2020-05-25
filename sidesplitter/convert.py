@@ -24,9 +24,6 @@
 # *
 # **************************************************************************
 
-import os
-
-import pyworkflow.utils as pwutils
 from pwem.emlib.image import ImageHandler
 
 
@@ -34,28 +31,19 @@ def getImageLocation(location):
     return ImageHandler.locationToXmipp(location)
 
 
-def convertMask(img, outputPath, newDim=None):
+def convertMask(img, outFn, newDim=None):
     """ Convert binary mask to a format read by Relion and truncate the
     values between 0-1 values, due to Relion only support masks with this
     values (0-1).
     Params:
         img: input image to be converted.
-        outputPath: it can be either a directory or a file path.
-            If it is a directory, the output name will be inferred from input
-            and put into that directory. If it is not a directory,
-            it is assumed is the output filename.
+        outFn: output file path.
     Return:
         new file name of the mask.
     """
 
     ih = ImageHandler()
     imgFn = getImageLocation(img.getLocation())
-
-    if os.path.isdir(outputPath):
-        outFn = os.path.join(outputPath, pwutils.replaceBaseExt(imgFn, 'mrc'))
-    else:
-        outFn = outputPath
-
     ih.truncateMask(imgFn, outFn, newDim=newDim)
 
     return outFn
