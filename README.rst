@@ -8,8 +8,8 @@ This plugin provide wrappers around `SIDESPLITTER <https://github.com/Structural
 | prod: |prod| | devel: |devel| |
 +--------------+----------------+
 
-.. |prod| image:: http://scipion-test.cnb.csic.es:9980/badges/cistem_prod.svg
-.. |devel| image:: http://scipion-test.cnb.csic.es:9980/badges/cistem_devel.svg
+.. |prod| image:: http://scipion-test.cnb.csic.es:9980/badges/sidesplitter_prod.svg
+.. |devel| image:: http://scipion-test.cnb.csic.es:9980/badges/sidesplitter_devel.svg
 
 
 Installation
