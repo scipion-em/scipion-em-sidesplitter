@@ -28,4 +28,4 @@
 SIDESPLITTER_HOME = 'SIDESPLITTER_HOME'
 
 # Supported versions
-V1_0 = '1.0'
+V1_2 = '1.2'

@@ -1,3 +1,4 @@
+3.0.3 - fix installation, update to 1.2
 3.0.2 - changed version to reflect Scipion 3 support
 1.0.2 - remove unused code
 1.0.0 - First plugin version
