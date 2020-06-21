@@ -29,7 +29,7 @@ import os
 import pwem
 from pyworkflow.utils import Environ
 
-from .constants import SIDESPLITTER_HOME, V1_0
+from .constants import SIDESPLITTER_HOME, V1_2
 
 
 _logo = "sidesplitter_logo.png"
@@ -39,11 +39,11 @@ _references = ['Ramlaul2020']
 class Plugin(pwem.Plugin):
     _homeVar = SIDESPLITTER_HOME
     _pathVars = [SIDESPLITTER_HOME]
-    _supportedVersions = [V1_0]
+    _supportedVersions = V1_2
 
     @classmethod
     def _defineVariables(cls):
-        cls._defineEmVar(SIDESPLITTER_HOME, 'sidesplitter-1.0')
+        cls._defineEmVar(SIDESPLITTER_HOME, 'sidesplitter-1.2')
 
     @classmethod
     def getEnviron(cls):
@@ -60,11 +60,20 @@ class Plugin(pwem.Plugin):
 
     @classmethod
     def defineBinaries(cls, env):
+        SW_EM = env.getEmFolder()
         shell = os.environ.get("SHELL", "bash")
-        installcmd = [('%s compile.sh' % shell,
-                       ['sidesplitter'])]
+        url = 'https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER.git'
+        installCmd = [
+            'cd %s && git clone %s sidesplitter-1.2 &&' % (SW_EM, url),
+            'cd sidesplitter-1.2 &&',
+            '%s compile.sh' % shell
+        ]
 
-        env.addPackage('sidesplitter', version='1.0',
-                       tar='sidesplitter_v1.0.tgz',
-                       commands=installcmd,
+        commands = [(" ".join(installCmd),
+                     '%s/sidesplitter-1.2/sidesplitter' % SW_EM)]
+
+        env.addPackage('sidesplitter', version='1.2',
+                       tar='void.tgz',
+                       neededProgs=['git'],
+                       commands=commands,
                        default=True)
