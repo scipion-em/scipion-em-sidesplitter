@@ -39,7 +39,7 @@ b) Developer's version
 
 SIDESPLITTER sources will be installed automatically with the plugin, but you can also link an existing installation.
 
-    * Default installation path assumed is ``software/em/sidesplitter-1.0``, if you want to change it, set *SIDESPLITTER_HOME* in ``scipion.conf`` file pointing to the folder where the SIDESPLITTER is installed.
+    * Default installation path assumed is ``software/em/sidesplitter-1.2``, if you want to change it, set *SIDESPLITTER_HOME* in ``scipion.conf`` file pointing to the folder where the SIDESPLITTER is installed.
 
 To check the installation, simply run one of the following Scipion tests:
 
@@ -52,7 +52,7 @@ A complete list of tests can also be seen by executing ``scipion test --show --g
 Supported versions
 ------------------
 
-1.0
+1.2
 
 Protocols
 ---------
