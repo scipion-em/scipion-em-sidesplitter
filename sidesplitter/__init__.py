@@ -34,6 +34,7 @@ from .constants import SIDESPLITTER_HOME, V1_2
 
 _logo = "sidesplitter_logo.png"
 _references = ['Ramlaul2020']
+_url = "https://github.com/scipion-em/scipion-em-sidesplitter"
 
 
 class Plugin(pwem.Plugin):
