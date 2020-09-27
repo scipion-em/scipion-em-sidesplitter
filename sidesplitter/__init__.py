@@ -34,6 +34,7 @@ from .constants import SIDESPLITTER_HOME, V1_2
 
 _logo = "sidesplitter_logo.png"
 _references = ['Ramlaul2020']
+_url = "https://github.com/scipion-em/scipion-em-sidesplitter"
 
 
 class Plugin(pwem.Plugin):
@@ -61,12 +62,11 @@ class Plugin(pwem.Plugin):
     @classmethod
     def defineBinaries(cls, env):
         SW_EM = env.getEmFolder()
-        shell = os.environ.get("SHELL", "bash")
-        url = 'https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER.git'
+        url = 'https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER/archive/master.zip'
         installCmd = [
-            'cd %s && git clone %s sidesplitter-1.2 &&' % (SW_EM, url),
-            'cd sidesplitter-1.2 &&',
-            '%s compile.sh' % shell
+            'wget %s && unzip master.zip &&' % url,
+            'cd SIDESPLITTER-master &&',
+            'gcc *.c -O3 -lm -lpthread -lfftw3 -lfftw3_threads -std=c99 -o sidesplitter && mv sidesplitter ../'
         ]
 
         commands = [(" ".join(installCmd),
@@ -74,6 +74,6 @@ class Plugin(pwem.Plugin):
 
         env.addPackage('sidesplitter', version='1.2',
                        tar='void.tgz',
-                       neededProgs=['git'],
+                       neededProgs=['unzip', 'gcc'],
                        commands=commands,
                        default=True)
