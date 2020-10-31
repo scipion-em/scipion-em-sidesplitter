@@ -31,16 +31,16 @@ from pyworkflow.utils import Environ
 
 from .constants import SIDESPLITTER_HOME, V1_2
 
-
+__version__ = '3.0.5'
 _logo = "sidesplitter_logo.png"
 _references = ['Ramlaul2020']
-_url = "https://github.com/scipion-em/scipion-em-sidesplitter"
 
 
 class Plugin(pwem.Plugin):
     _homeVar = SIDESPLITTER_HOME
     _pathVars = [SIDESPLITTER_HOME]
     _supportedVersions = V1_2
+    _url = "https://github.com/scipion-em/scipion-em-sidesplitter"
 
     @classmethod
     def _defineVariables(cls):
