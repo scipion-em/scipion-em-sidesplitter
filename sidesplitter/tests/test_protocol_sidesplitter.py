@@ -27,7 +27,7 @@
 from pyworkflow.utils import magentaStr, join, makePath, copyFile
 from pyworkflow.tests import BaseTest, DataSet, setupTestProject
 from pyworkflow.plugin import Domain
-import pwem
+from pwem.objects import Volume
 from pwem.protocols import ProtImportParticles, ProtImportVolumes
 
 from ..protocols import ProtSideSplitter
@@ -93,7 +93,7 @@ class TestSideSplitter(BaseTest):
         outputVol = self.importVolume().outputVolume
         prot.referenceVolume.set(outputVol)
 
-        volume = pwem.objects.Volume()
+        volume = Volume()
         volume.setFileName(prot._getExtraPath('test.mrc'))
         pxSize = prot.inputParticles.get().getSamplingRate()
         volume.setSamplingRate(pxSize)
