@@ -24,7 +24,9 @@
 # *
 # **************************************************************************
 
-from pyworkflow.utils import magentaStr, join, makePath, copyFile
+import os
+
+from pyworkflow.utils import magentaStr, makePath, copyFile
 from pyworkflow.tests import BaseTest, DataSet, setupTestProject
 from pyworkflow.plugin import Domain
 from pwem.objects import Volume
@@ -50,9 +52,9 @@ class TestSideSplitter(BaseTest):
         setupTestProject(cls)
         cls.ds = DataSet.getDataSet('relion_tutorial')
         pathFns = 'import/refine3d/extra'
-        cls.volFn = cls.ds.getFile(join(pathFns, 'relion_class001.mrc'))
-        cls.half1Fn = cls.ds.getFile(join(pathFns, 'relion_it025_half1_class001.mrc'))
-        cls.half2Fn = cls.ds.getFile(join(pathFns, 'relion_it025_half2_class001.mrc'))
+        cls.volFn = cls.ds.getFile(os.path.join(pathFns, 'relion_class001.mrc'))
+        cls.half1Fn = cls.ds.getFile(os.path.join(pathFns, 'relion_it025_half1_class001.mrc'))
+        cls.half2Fn = cls.ds.getFile(os.path.join(pathFns, 'relion_it025_half2_class001.mrc'))
 
     def importVolume(self):
         print(magentaStr("\n==> Importing data - volume:"))
