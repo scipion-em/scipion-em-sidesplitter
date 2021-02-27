@@ -27,7 +27,6 @@
 import os
 
 import pyworkflow.protocol.params as params
-import pyworkflow.utils as pwutils
 from pwem.protocols import ProtAnalysis3D
 from pwem.objects import Volume
 from pwem.emlib.image import ImageHandler
@@ -44,16 +43,13 @@ class ProtSideSplitter(ProtAnalysis3D):
     """
     _label = 'local filter'
 
-    def _getInputPath(self, *paths):
-        return self._getPath('input', *paths)
-
     def _createFilenameTemplates(self):
         """ Centralize how files are called. """
-        myDict = {'half1': self._getInputPath("half1_unfil.mrc"),
-                  'half2': self._getInputPath("half2_unfil.mrc"),
-                  'mask': self._getInputPath("mask.mrc"),
-                  'outHalf1Fn': self._getInputPath('half1_unfil_sidesplitter.mrc'),
-                  'outHalf2Fn': self._getInputPath('half1_unfil_sidesplitter.mrc'),
+        myDict = {'half1': self._getExtraPath("half1_unfil.mrc"),
+                  'half2': self._getExtraPath("half2_unfil.mrc"),
+                  'mask': self._getExtraPath("mask.mrc"),
+                  'outHalf1Fn': self._getExtraPath('half1_unfil_sidesplitter.mrc'),
+                  'outHalf2Fn': self._getExtraPath('half1_unfil_sidesplitter.mrc'),
                   }
 
         self._updateFilenamesDict(myDict)
@@ -95,8 +91,6 @@ class ProtSideSplitter(ProtAnalysis3D):
     
     def convertInputStep(self):
         """ Convert input half-maps to mrc as expected by SIDESPLITTER."""
-        pwutils.makePath(self._getInputPath())
-
         protRef = self.protRefine.get()
         outVol = protRef.outputVolume
         dim = outVol.getXDim()
@@ -162,17 +156,13 @@ class ProtSideSplitter(ProtAnalysis3D):
  
     def _getArgs(self):
         """ Prepare the args dictionary."""
-        args = {'--v1': self._getRelPath(self._getFileName('half1')),
-                '--v2': self._getRelPath(self._getFileName('half2'))}
+        args = {'--v1': os.path.basename(self._getFileName('half1')),
+                '--v2': os.path.basename(self._getFileName('half2'))}
 
         if self.mask.hasValue():
-            args['--mask'] = self._getRelPath(self._getFileName('mask'))
+            args['--mask'] = os.path.basename(self._getFileName('mask'))
 
         if self.doSNRWeighting:
             args['--spectrum'] = ' '
 
         return args
-
-    def _getRelPath(self, fn):
-        """ Return relative path from cwd=extra. """
-        return os.path.relpath(fn, self._getExtraPath())
