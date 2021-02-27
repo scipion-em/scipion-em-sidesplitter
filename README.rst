@@ -4,6 +4,27 @@ SIDESPLITTER plugin
 
 This plugin provide wrappers around `SIDESPLITTER <https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER>`_ program for mitigating local overfitting.
 
+.. image:: https://img.shields.io/pypi/v/scipion-em-sidesplitter.svg
+        :target: https://pypi.python.org/pypi/scipion-em-sidesplitter
+        :alt: PyPI release
+
+.. image:: https://img.shields.io/pypi/l/scipion-em-sidesplitter.svg
+        :target: https://pypi.python.org/pypi/scipion-em-sidesplitter
+        :alt: License
+
+.. image:: https://img.shields.io/pypi/pyversions/scipion-em-sidesplitter.svg
+        :target: https://pypi.python.org/pypi/scipion-em-sidesplitter
+        :alt: Supported Python versions
+
+.. image:: https://img.shields.io/sonar/quality_gate/scipion-em_scipion-em-sidesplitter?server=https%3A%2F%2Fsonarcloud.io
+        :target: https://sonarcloud.io/dashboard?id=scipion-em_scipion-em-sidesplitter
+        :alt: SonarCloud quality gate
+
+.. image:: https://img.shields.io/pypi/dm/scipion-em-sidesplitter
+        :target: https://pypi.python.org/pypi/scipion-em-sidesplitter
+        :alt: Downloads
+
+
 +--------------+----------------+
 | prod: |prod| | devel: |devel| |
 +--------------+----------------+
