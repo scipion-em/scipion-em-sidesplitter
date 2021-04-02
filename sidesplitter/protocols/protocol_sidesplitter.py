@@ -27,6 +27,7 @@
 import os
 
 import pyworkflow.protocol.params as params
+from pyworkflow.constants import BETA
 from pwem.protocols import ProtAnalysis3D
 from pwem.objects import Volume
 from pwem.emlib.image import ImageHandler
@@ -42,6 +43,7 @@ class ProtSideSplitter(ProtAnalysis3D):
     Find more information at https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER
     """
     _label = 'local filter'
+    _devStatus = BETA
 
     def _createFilenameTemplates(self):
         """ Centralize how files are called. """
