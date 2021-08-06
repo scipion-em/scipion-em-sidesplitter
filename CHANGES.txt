@@ -1,3 +1,4 @@
+3.0.8 - fix output filenames
 3.0.7 - fix compilation flags, add devStatus
 3.0.6 - fix failing test
 3.0.4 - fix installation and compilation

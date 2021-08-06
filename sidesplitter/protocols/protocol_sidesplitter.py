@@ -50,8 +50,8 @@ class ProtSideSplitter(ProtAnalysis3D):
         myDict = {'half1': self._getExtraPath("half1_unfil.mrc"),
                   'half2': self._getExtraPath("half2_unfil.mrc"),
                   'mask': self._getExtraPath("mask.mrc"),
-                  'outHalf1Fn': self._getExtraPath('half1_unfil_sidesplitter.mrc'),
-                  'outHalf2Fn': self._getExtraPath('half1_unfil_sidesplitter.mrc'),
+                  'outHalf1Fn': self._getExtraPath('halfmap1.mrc'),
+                  'outHalf2Fn': self._getExtraPath('halfmap2.mrc'),
                   }
 
         self._updateFilenamesDict(myDict)
