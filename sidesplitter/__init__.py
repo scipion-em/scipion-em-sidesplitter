@@ -31,7 +31,7 @@ from pyworkflow.utils import Environ
 
 from .constants import SIDESPLITTER_HOME, V1_2
 
-__version__ = '3.0.8'
+__version__ = '3.0.9'
 _logo = "sidesplitter_logo.png"
 _references = ['Ramlaul2020']
 
