@@ -61,19 +61,19 @@ class Plugin(pwem.Plugin):
 
     @classmethod
     def defineBinaries(cls, env):
-        SW_EM = env.getEmFolder()
-        url = 'https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER/archive/master.zip'
+        ver = "1.2"
+        url = 'https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER.git'
         installCmd = [
-            'wget %s && unzip master.zip &&' % url,
-            'cd SIDESPLITTER-master &&',
-            'gcc -O3 *.c -lm -pthread -lfftw3 -lfftw3_threads -std=c99 -o sidesplitter && mv sidesplitter ../'
+            f'cd .. && rmdir sidesplitter-{ver} &&',
+            f'git clone {url} sidesplitter-{ver} &&',
+            f'cd sidesplitter-{ver} &&',
+            f'gcc -O3 *.c -lm -pthread -lfftw3 -lfftw3_threads -std=c99 -o sidesplitter'
         ]
 
-        commands = [(" ".join(installCmd),
-                     '%s/sidesplitter-1.2/sidesplitter' % SW_EM)]
+        commands = [(" ".join(installCmd), 'sidesplitter')]
 
-        env.addPackage('sidesplitter', version='1.2',
+        env.addPackage('sidesplitter', version=ver,
                        tar='void.tgz',
-                       neededProgs=['unzip', 'gcc'],
+                       neededProgs=['git', 'gcc'],
                        commands=commands,
                        default=True)

@@ -1,4 +1,4 @@
-3.0.11 - add possible outputs dict
+3.0.11 - add possible outputs dict, update installation procedure
 3.0.10 - minor changes
 3.0.9 - fix output filenames
 3.0.7 - fix compilation flags, add devStatus
