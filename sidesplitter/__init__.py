@@ -40,7 +40,7 @@ class Plugin(pwem.Plugin):
     _homeVar = SIDESPLITTER_HOME
     _pathVars = [SIDESPLITTER_HOME]
     _supportedVersions = V1_2
-    _url = "https://github.com/scipion-em/scipion-em-sidesplitter"
+    _url = "https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER"
 
     @classmethod
     def _defineVariables(cls):
