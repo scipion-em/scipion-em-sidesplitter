@@ -39,8 +39,6 @@ from ..convert import convertMask
 class ProtSideSplitter(ProtAnalysis3D):
     """
     Protocol for mitigating local over-fitting by filtering.
-     
-    Find more information at https://github.com/StructuralBiology-ICLMedicine/SIDESPLITTER
     """
     _label = 'local filter'
     _devStatus = PROD
