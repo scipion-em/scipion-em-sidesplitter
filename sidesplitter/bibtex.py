@@ -29,7 +29,7 @@
 title = "Mitigating Local Over-fitting During Single Particle Reconstruction with SIDESPLITTER",
 journal = "BioRxiv",
 year = "2020",
-doi = "http://dx.doi.org/10.1101/2019.12.12.874081",
+doi = "https://dx.doi.org/10.1101/2019.12.12.874081",
 url = "https://www.biorxiv.org/content/10.1101/2019.12.12.874081v2",
 author = "Kailash Ramlaul, Colin M. Palmer and Christopher H. S. Aylett",
 }
