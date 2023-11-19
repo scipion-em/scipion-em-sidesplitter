@@ -31,7 +31,7 @@ from pyworkflow.utils import Environ
 
 from .constants import SIDESPLITTER_HOME, V1_2
 
-__version__ = '3.0.11'
+__version__ = '3.0.12'
 _logo = "sidesplitter_logo.png"
 _references = ['Ramlaul2020']
 
@@ -67,7 +67,7 @@ class Plugin(pwem.Plugin):
             f'cd .. && rmdir sidesplitter-{ver} &&',
             f'git clone {url} sidesplitter-{ver} &&',
             f'cd sidesplitter-{ver} &&',
-            f'gcc -O3 *.c -lm -pthread -lfftw3 -lfftw3_threads -std=c99 -o sidesplitter'
+            'gcc -O3 *.c -lm -pthread -lfftw3 -lfftw3_threads -std=c99 -o sidesplitter'
         ]
 
         commands = [(" ".join(installCmd), 'sidesplitter')]
