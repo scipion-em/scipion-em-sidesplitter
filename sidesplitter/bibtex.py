@@ -26,12 +26,17 @@
 # **************************************************************************
 """
 @article{Ramlaul2020,
-title = "Mitigating Local Over-fitting During Single Particle Reconstruction with SIDESPLITTER",
-journal = "BioRxiv",
-year = "2020",
-doi = "https://dx.doi.org/10.1101/2019.12.12.874081",
-url = "https://www.biorxiv.org/content/10.1101/2019.12.12.874081v2",
-author = "Kailash Ramlaul, Colin M. Palmer and Christopher H. S. Aylett",
+  title = {Mitigating local over-fitting during single particle reconstruction with SIDESPLITTER},
+  volume = {211},
+  ISSN = {1047-8477},
+  DOI = {http://dx.doi.org/10.1016/j.jsb.2020.107545},
+  number = {2},
+  journal = {Journal of Structural Biology},
+  publisher = {Elsevier BV},
+  author = {Ramlaul,  Kailash and Palmer,  Colin M. and Nakane,  Takanori and Aylett,  Christopher H.S.},
+  year = {2020},
+  month = aug,
+  pages = {107545}
 }
 
 """
