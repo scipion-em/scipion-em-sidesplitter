@@ -87,9 +87,9 @@ class ProtSideSplitter(ProtAnalysis3D):
     
     def _insertAllSteps(self):
         self._createFilenameTemplates()
-        self._insertFunctionStep('convertInputStep')
-        self._insertFunctionStep('runSideSplitterStep')
-        self._insertFunctionStep('createOutputStep')
+        self._insertFunctionStep('convertInputStep', needsGPU=False)
+        self._insertFunctionStep('runSideSplitterStep', needsGPU=False)
+        self._insertFunctionStep('createOutputStep', needsGPU=False)
 
     # --------------------------- STEPS functions -----------------------------
     
