@@ -40,6 +40,63 @@ class ProtSideSplitter(ProtAnalysis3D):
     """
     Protocol for mitigating local over-fitting by filtering.
     """
+
+    """
+        SideSplitter (ProtSideSplitter) — User Manual
+
+            Overview
+
+            The SideSplitter protocol applies local filtering to two cryo-EM
+            half maps in order to reduce local over-fitting effects during
+            refinement. Its main purpose is to improve the reliability of
+            reconstructed densities by suppressing artificial correlations
+            between half maps while preserving biologically meaningful signal.
+
+            Inputs and General Workflow
+
+            The protocol requires a previous gold-standard 3D refinement
+            protocol containing two independent half maps. Optionally, a
+            volume mask can be provided to restrict the filtering process
+            to structurally relevant regions and exclude solvent or noisy
+            background areas. During execution, the half maps and optional
+            mask are converted into MRC format and prepared for processing
+            with the SIDESPLITTER program.
+
+            Local Filtering Strategy
+
+            The protocol performs local filtering independently on the two
+            half maps while preserving consistency between them. This approach
+            helps mitigate local over-fitting artifacts that may arise during
+            iterative refinement, particularly in flexible or poorly resolved
+            regions of macromolecular complexes.
+
+            An optional signal-to-noise ratio weighting mode can be enabled.
+            In this mode, the protocol outputs an SNR-weighted spectrum
+            instead of preserving the original grey-scale distribution of
+            the input maps. From a biological perspective, this option may
+            improve interpretability in challenging datasets with uneven
+            local resolution or variable noise levels.
+
+            Outputs and Interpretation
+
+            After execution, the protocol produces two locally filtered
+            half maps corresponding to the processed input reconstructions.
+            The output maps preserve the sampling rate of the original
+            refinement and can be used in downstream reconstruction,
+            validation, or post-processing workflows.
+
+            The filtered maps are particularly useful for reducing the impact
+            of over-fitted regions before local resolution estimation,
+            sharpening, map interpretation, or structural comparison.
+
+            Final Perspective
+
+            ProtSideSplitter provides a practical framework for controlling
+            local over-fitting effects in cryo-EM reconstructions. By applying
+            localized filtering directly to independent half maps, the
+            protocol improves reconstruction reliability and supports more
+            robust biological interpretation of structural features.
+        """
     _label = 'local filter'
     _devStatus = PROD
     _possibleOutputs = {
